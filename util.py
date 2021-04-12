@@ -1,4 +1,5 @@
-def util(n, fn = lambda x: x**3):
+import numpy as np
+def nth_power(n, fn = lambda x: x**3):
 
     '''
     calculates power for number up to n
@@ -8,4 +9,9 @@ def util(n, fn = lambda x: x**3):
     '''
     return [fn(i) for i in range(n)]
 
-print(util(10))
+def sigmoid(x, a = 1):
+    return 1/(1+np.exp(-a*x))
+
+print(nth_power(10))
+
+print(sigmoid(0))
