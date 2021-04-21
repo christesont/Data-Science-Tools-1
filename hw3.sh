@@ -111,14 +111,20 @@ echo "Mean frequency using floating point arithemetics = `echo " $total_freq / $
 # and file will be added , commited and pushed to remote master using one lazy_commit command.
 function lazy_commit() {
     commit_message="${@: -1}"
+
     for arg in $@
       do if [ "$arg" != "$commit_message" ]
-        then
-          git add "$arg"
+        then if [ "$arg" != "$0" ]
+          then
+            echo "add $arg"
+            git add `echo "$arg"`
+        fi
         else
-          git commit -m `echo "$commit_message"`
+          echo "commit $commit_message"
+          git commit -a -m `echo "$commit_message"`
+
       fi
     done
     git push origin main
    }
-lazy_commit file1.txt file2.txt file3.txt "last_addition+commit"
+lazy_commit file1.txt file2.txt file3.txt 'last_addition'
