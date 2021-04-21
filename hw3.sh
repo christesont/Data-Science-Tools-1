@@ -126,4 +126,4 @@ function lazy_commit() {
     done
     git push origin main
    }
-lazy_commit file1.txt file2.txt file3.txt 'last_addition'
+lazy_commit file1.txt file2.txt file3.txt "general+commit+message"
