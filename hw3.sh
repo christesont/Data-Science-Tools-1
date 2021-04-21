@@ -113,16 +113,15 @@ function lazy_commit() {
     commit_message="${@: -1}"
 
     for arg in $@
-      do if [ "$arg" != "$commit_message" ]
-        then if [ "$arg" != "$0" ]
+      do if [ "$arg" != "$0" ]
+        then if [ "$arg" != "$commit_message" ]
           then
             echo "add $arg"
             git add `echo "$arg"`
+          else
+            echo "commit $commit_message"
+            git commit -a -m `echo "$commit_message"`
         fi
-        else
-          echo "commit $commit_message"
-          git commit -a -m `echo "$commit_message"`
-
       fi
     done
     git push origin main
